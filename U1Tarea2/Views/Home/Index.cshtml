@@ -1,0 +1,39 @@
+﻿@model U1Tarea2.Models.ViewModels.ConversionViewModel;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Conversion</title>
+    <link href="~/estilos.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+    <header>
+        <img src="~/img/logo.png" /><h2>¡Bienvenido a la casa de cambio!</h2><img src="~/img/logo.png" />
+    </header>
+    <main>
+    <form action="~/Home/Index">
+        <p>¿Cuánto dinero quieres convertir?</p> 
+        <input type="number" name="Cantidad" required value="@Model.Cantidad" /><br />
+        <p>¿A qué moneda quieres convertir tu dinero?</p><br />
+        <input type="radio" name="Moneda" id="mxn" value="MXN" checked/>
+        <label for="mxn">MXN</label>
+        <input type="radio" name="Moneda" id="usd" value="USD"/>
+        <label for="usd">USD</label><br />
+        <input type="submit" value="Convertir" />
+        <p>Resultado: </p><p class="resultado">@Model.Resultado.ToString("$0.00") @Model.Moneda</p>
+    </form>
+    </main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
