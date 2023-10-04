@@ -1,0 +1,19 @@
+﻿@model U2Tarea1.Models.ViewModels.DetallesViewModel
+@{
+    Layout = "Layout";
+}
+
+<div class="especieficha1">
+    <img src="~/especies/@(Model.Id).jpg" />
+    <div>
+        <h1>@Model.Nombre</h1>
+        <p><label>Clase:</label><a href="~/Especies/Index/@(Model.Clase)">@Model.Clase</a></p>
+        <p><label>Peso:</label>@($"{Model.Peso:0.00}kg")</p>
+        <p><label>Tamaño:</label>@(Model.Tamaño)cm</p>
+        <p><label>Habitat:</label>@Model.Habitat</p>
+        <p><label>Descripción:</label></p>
+        <p>@(Model.Observaciones).</p>
+    </div>
+
+    <a href="~/especies/Index/@Model.Clase">Regresar</a>
+</div>
