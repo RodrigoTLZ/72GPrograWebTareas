@@ -11,19 +11,27 @@ namespace U2Tarea1.Controllers
         {
             AnimalesContext context = new();
             var clase = context.Clase.FirstOrDefault(x => x.Nombre == Id);
-            var especies = context.Especies.OrderBy(x=>x.Especie).Where(x => x.IdClase == clase.Id).Select(x=> new EspecieModel
+            if(clase != null)
             {
-                Id = x.Id,
-                Nombre = x.Especie ?? ""
-            });
+                var especies = context.Especies.OrderBy(x => x.Especie).Where(x => x.IdClase == clase.Id).Select(x => new EspecieModel
+                {
+                    Id = x.Id,
+                    Nombre = x.Especie ?? ""
+                });
 
-            IndexEspeciesViewModel vm = new()
+                IndexEspeciesViewModel vm = new()
+                {
+                    IdClase = clase?.Id ?? 0,
+                    NombreClase = Id ?? "",
+                    AnimalesEspecie = especies
+                };
+                return View(vm);
+            }
+            else
             {
-                IdClase = clase.Id,
-                NombreClase = Id ?? "",
-                AnimalesEspecie = especies
-            };
-            return View(vm);
+                return RedirectToAction("Index");
+            }
+            
         }
 
         public IActionResult DetallesEspecie(string Id)
@@ -39,7 +47,7 @@ namespace U2Tarea1.Controllers
                 DetallesViewModel vm = new()
                 {
                     Id = animal.Id,
-                    Clase = animal.IdClaseNavigation.Nombre ?? "No disponible",
+                    Clase = animal.IdClaseNavigation?.Nombre ?? "No disponible",
                     Habitat = animal.Habitat ?? "No disponible",
                     Nombre = animal.Especie,
                     Observaciones = animal.Observaciones ?? "No disponible",
