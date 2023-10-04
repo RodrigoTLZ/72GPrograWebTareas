@@ -21,7 +21,7 @@ namespace U2Tarea1.Controllers
 
                 IndexEspeciesViewModel vm = new()
                 {
-                    IdClase = clase?.Id ?? 0,
+                    IdClase = clase.Id,
                     NombreClase = Id ?? "",
                     AnimalesEspecie = especies
                 };
