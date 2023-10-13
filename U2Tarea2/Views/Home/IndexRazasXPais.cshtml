@@ -1,0 +1,30 @@
+﻿@model IEnumerable<U2Tarea2.Models.ViewModels.IndexRazasXPaisViewModel>
+@{
+    Layout = "Layout";
+}
+
+<section class="nav">
+    <h3>Razas por país</h3>
+    <nav>
+        <a href="~/Home/Index">Listado Alfabético de Razas</a>
+    </nav>
+</section>
+
+<section class="list">
+    @foreach (var item in Model)
+    {
+        <h4>@item.NombrePais</h4>
+        <ul>
+            @foreach (var perro in item.ListaRazasXPais)
+            {
+                <li>
+                    <a href="~/Home/DetallesRaza/@(perro.Nombre.Replace(" ","-"))">
+                        <img src="~/imgs_perros/@(perro.Id)_0.jpg" />
+                        @perro.Nombre
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</section>
+
