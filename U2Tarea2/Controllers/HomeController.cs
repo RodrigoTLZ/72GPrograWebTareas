@@ -16,22 +16,20 @@ namespace U2Tarea2.Controllers
             if (Id == null)
             {
                
-                var ListaRazas = context.Razas.Select(p => new PerroModel
+                vm.ListaRazas = context.Razas.Select(p => new PerroModel
                 {
                     Id = p.Id,
                     Nombre = p.Nombre,
                 }).OrderBy(x => x.Nombre);
-                vm.ListaRazas = ListaRazas;
                
             }
             else
             {
-                var ListaRazas = context.Razas.Where(x => x.Nombre.StartsWith(Id)).Select(y => new PerroModel
+                vm.ListaRazas = context.Razas.Where(x => x.Nombre.StartsWith(Id)).Select(y => new PerroModel
                 {
                     Id = y.Id,
                     Nombre = y.Nombre
                 }).OrderBy(X=>X.Nombre);
-                vm.ListaRazas = ListaRazas;
             }
             return View(vm);
         }
