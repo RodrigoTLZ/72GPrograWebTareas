@@ -29,7 +29,8 @@ namespace U3Tarea1___Hamburguesas.Controllers
             {
                 Nombre = x.Nombre
             }).ToArray();
-            if(menuspromociones != null)
+
+            if(menuspromociones.Any())
             {
                 if(id == null)
                 {
