@@ -1,0 +1,32 @@
+﻿@model U3Tarea1___Hamburguesas.Models.ViewModels.MenuViewModel
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section class="menu3">
+    <div>
+        <h1>NUESTRO MENÚ</h1>
+        @foreach (var item in Model.ListaClasificaciones)
+        {
+           
+            <h3>@item.NombreClasificacion</h3>
+            @foreach (var menu in item.ListaMenu)
+            {
+                @if(Model.HamburguesaSeleccionada.Id != menu.Id)
+                {
+                    <h2><a href="~/Home/Menu/@menu.Nombre.Replace(" ","-")"><span>@menu.Nombre</span> <span class="price">@menu.Precio.ToString("c")</span></a></h2>
+                }
+                else
+                {
+                    <h2 class="seleccionado"><a href="~/Home/Menu/@menu.Nombre.Replace(" ","-")"><span>@menu.Nombre</span> <span class="price">@menu.Precio.ToString("c")</span></a></h2>
+                }
+               
+            }
+        }
+    </div>
+    <div>
+        <img src="~/hamburguesas/@(Model.HamburguesaSeleccionada.Id).png" />
+        <p>@Model.HamburguesaSeleccionada.Descripción</p>
+    </div>
+</section>
+

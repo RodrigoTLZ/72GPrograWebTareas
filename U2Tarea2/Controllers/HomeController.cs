@@ -37,6 +37,9 @@ namespace U2Tarea2.Controllers
         public IActionResult IndexRazasXPais()
         {
             PerrosContext context = new();
+            //List<IndexRazasXPaisViewModel> vm = new();
+            //Es lo mismo el var datos que pasar un viewmodel, simplemente si son varios viewmodel se debe hacer un list(como arriba) y al final convertirlo a .ToList();
+            //LO MEJOR ES USAR VM CUANDO SOLAMENTE SEA 1 VIEWMODEL Y VAR DATOS CUANDO REGRESES VARIOS VIEWMODEL (IENUMERABLE)
             var datos = context.Paises.Include(x => x.Razas).OrderBy(x => x.Nombre).Select(x => new IndexRazasXPaisViewModel
             {
                 NombrePais = x.Nombre ?? "No disponible",

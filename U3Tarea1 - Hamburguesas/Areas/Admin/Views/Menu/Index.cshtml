@@ -1,0 +1,49 @@
+﻿@model U3Tarea1___Hamburguesas.Areas.Admin.Models.ViewModels.AdminMenuViewModel
+@{
+ 
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<section class="menu2">
+    @foreach (var item in Model.ListaClasificaciones)
+    {
+        <h1>@item.Nombre</h1>
+
+        @foreach (var menu in item.ListaMenu)
+        {
+            <div>
+                <img src="~/hamburguesas/@(menu.Id).png" />
+                <h1>@menu.Nombre</h1>
+                @if(menu.PrecioPromocion == null)
+                {
+                    <h2>@menu.Precio.ToString("c")</h2>
+                }
+                else
+                {
+                    <h2><del>@menu.Precio.ToString("c")</del><br />@menu.PrecioPromocion?.ToString("c")</h2>
+                }
+                <p>
+                    @menu.Descripcion
+                </p>
+
+                <span class="acciones">
+                    <a href="~/Admin/Menu/Editar/@(menu.Id)">Editar</a>
+                    <a href="~/Admin/Menu/Eliminar/@(menu.Id)">Eliminar</a>
+                    @if(menu.PrecioPromocion == null)
+                    {
+                        <a href="~/Admin/Menu/AgregarPromocion/@menu.Id">Agregar promoción</a>
+                    }
+                    else
+                    {
+                        <a href="~/Admin/Menu/EliminarPromocion/@menu.Id">Quitar promoción</a>
+                    }
+
+                </span>
+            </div>
+        }
+    }
+    
+
+
+    <a class="fab" href="~/Admin/Menu/Agregar">+</a>
+</section>
